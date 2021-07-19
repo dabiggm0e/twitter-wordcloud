@@ -5,10 +5,12 @@ import time
 class TweepyWrapper:
     def __init__(this, PATH):
         this.PATH = PATH
-        this.api = this.init_tweepy()
+        this.api = this.__init_tweepy()
         
+    def get_api(this):
+        return this.api
 
-    def load_twitter_secrets(this):
+    def __load_twitter_secrets(this):
         filename = this.PATH + "/secrets.conf"
         try:
             with open(filename) as f:
@@ -29,9 +31,9 @@ class TweepyWrapper:
 
         return secrets
 
-    def init_tweepy(this):
+    def __init_tweepy(this):
 
-        __twitter_secrets = this.load_twitter_secrets()
+        __twitter_secrets = this.__load_twitter_secrets()
         auth = tweepy.OAuthHandler(__twitter_secrets["CONSUMER_KEY"], __twitter_secrets["CONSUMER_SECRET"])
         auth.set_access_token(__twitter_secrets["ACCESS_TOKEN"], __twitter_secrets["ACCESS_TOKEN_SECRET"])
 
