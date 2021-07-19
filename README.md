@@ -24,3 +24,5 @@ Run the program by passing the Twitter's handle of the account you are trying to
   `python twitterwordcloud_demo.py --user USERNAME`
 
 If no --user argument was passed, then default value will be "twitter"
+
+The results will be found in the **"./png"** directory.
