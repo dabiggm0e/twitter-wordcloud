@@ -1,10 +1,21 @@
 import wordcloud_wrapper
 import tweepy_wrapper
+import argparse
 
 TWITTER_SECRETS_PATH = "./twitter"
 INPUT_FOLDER = "./input"
 OUTPUT_FOLDER = "./png"
 SCREENNAME = "twitter"
+
+def parse_args():
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-u", "--user", help = "The Twitter user's handle")
+
+	args = parser.parse_args()
+
+	if args.user:
+		SCREENNAME = args.user
+		print("Entered username is: " + args.user)
 
 def tokenize_tweets(tweets):
 	tokens = []
@@ -13,6 +24,9 @@ def tokenize_tweets(tweets):
 	return tokens
 
 def main():
+
+	parse_args()
+
 	blacklist = set(["\n"]) #set([" <Media omitted>\n", "\n"])
 
 	wc = wordcloud_wrapper.WordCloudWrapper(INPUT_FOLDER, OUTPUT_FOLDER, blacklist)
