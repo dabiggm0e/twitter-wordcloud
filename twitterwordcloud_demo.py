@@ -5,18 +5,16 @@ import argparse
 TWITTER_SECRETS_PATH = "./twitter"
 INPUT_FOLDER = "./input"
 OUTPUT_FOLDER = "./png"
-SCREENNAME = "twitter"
+SCREENNAME = ""
 
 def parse_args():
 	global SCREENNAME
 	parser = argparse.ArgumentParser()
-	parser.add_argument("-u", "--user", help = "The Twitter user's handle")
+	parser.add_argument("-u", "--user", default="twitter", help = "The Twitter user's handle")
 
 	args = parser.parse_args()
 	if args.user:
 		SCREENNAME = args.user
-
-		print("Entered username is: " + args.user)
 
 def tokenize_tweets(tweets):
 	tokens = []
